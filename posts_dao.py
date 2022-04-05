@@ -30,7 +30,13 @@ class PostsDAO:
         self.get_comments()
 
     def get_posts_by_user(self, user_name):
-        pass
+        user_posts_list = []
+        self.load_all()
+        for post in self.posts_list:
+            if post['poster_name'] == user_name:
+                user_posts_list.append(post)
+        return user_posts_list
+
 
 
 

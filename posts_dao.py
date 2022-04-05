@@ -25,13 +25,13 @@ class PostsDAO:
         self.load_comments()
         return self.comments_list
 
-    def load_all(self):
+    def get_all(self):
         self.get_posts()
         self.get_comments()
 
     def get_posts_by_user(self, user_name):
         user_posts_list = []
-        self.load_all()
+        self.get_posts()
         for post in self.posts_list:
             if post['poster_name'] == user_name:
                 user_posts_list.append(post)
@@ -39,12 +39,20 @@ class PostsDAO:
 
     def get_comments_by_post_id(self, post_id):
         comments_list = []
-        self.load_all()
+        self.get_comments()
         for comment in self.comments_list:
             if comment['post_id'] == post_id:
                 comments_list.append(comment)
         return comments_list
 
+    def get_post_by_keyword(self, keyword):
+        post_list = []
+        self.get_posts()
+        for post in self.posts_list:
+            if keyword.lower() in post['content'].lower():
+                post_list.append(post)
+        return post_list
+
 
 dao = PostsDAO()
-print(dao.get_comments_by_post_id(1))
+print(dao.get_post_by_keyword('УТРОМ'))

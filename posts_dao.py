@@ -37,10 +37,14 @@ class PostsDAO:
                 user_posts_list.append(post)
         return user_posts_list
 
-
+    def get_comments_by_post_id(self, post_id):
+        comments_list = []
+        self.load_all()
+        for comment in self.comments_list:
+            if comment['post_id'] == post_id:
+                comments_list.append(comment)
+        return comments_list
 
 
 dao = PostsDAO()
-posts_list = dao.load_all()
-print(dao.comments_list)
-print(dao.posts_list)
+print(dao.get_comments_by_post_id(1))

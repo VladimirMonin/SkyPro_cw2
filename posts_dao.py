@@ -1,5 +1,4 @@
 import json
-
 from config import *
 
 
@@ -69,6 +68,3 @@ class PostsDAO:
             if post['pk'] == pk:
                 post_list.append(post)
         return post_list
-
-dao = PostsDAO()
-print(dao.get_post_by_pk(8))

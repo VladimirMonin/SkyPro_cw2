@@ -74,3 +74,10 @@ class PostsDAO:
             if post['pk'] == pk:
                 post_list.append(post)
         return post_list
+
+    # def get_main_page(self):
+    #     self.get_all()
+    #     post_list = []
+    #     for post in self.posts_list:
+    #         post_id = post['pk']
+    #         comments_count =

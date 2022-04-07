@@ -74,7 +74,7 @@ class PostsDAO:
             if post['pk'] == pk:
                 post['comments'] = self.get_comments_by_post_id(pk)
                 post['comments_count'] = self.get_count_comments_for_post(pk)
-            return post
+                return post
 
     def get_main_page(self):
         """Метод берет исходный json с постами и добавляет туда ключ comments_count
@@ -90,6 +90,5 @@ class PostsDAO:
 
 
 dao = PostsDAO()
-test = dao.get_post_by_pk(2)
-pprint(test)
-print(type(test))
+test = dao.get_post_by_pk(1)
+print(test)

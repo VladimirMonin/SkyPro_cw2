@@ -11,6 +11,13 @@ def get_main_page():
     return render_template('index.html', posts_list=posts_list)
 
 
+@app.route('/posts/<post_id>')
+def get_post_by_id(post_id):
+    single_post_dict = dao.get_post_by_pk(post_id)
+    post_comments_list = single_post_dict['comments']
+    return render_template('post.html', post=single_post_dict, comments=post_comments_list)
+
+
 app.run(debug=True)
 
 """

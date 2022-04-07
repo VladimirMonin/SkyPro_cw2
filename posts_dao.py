@@ -75,9 +75,15 @@ class PostsDAO:
                 post_list.append(post)
         return post_list
 
-    # def get_main_page(self):
-    #     self.get_all()
-    #     post_list = []
-    #     for post in self.posts_list:
-    #         post_id = post['pk']
-    #         comments_count =
+    def get_main_page(self):
+        """Метод берет исходный json с постами и добавляет туда ключ comments_count
+         с количеством комментов для каждого поста для вывода вьюшки главной страницы """
+        self.get_all()
+        posts_list = []
+        for post in self.posts_list:
+            post_id = post['pk']
+            comments_count = self.get_count_comments_for_post(post_id)
+            post['comments_count'] = comments_count
+            posts_list.append(post)
+        return posts_list
+

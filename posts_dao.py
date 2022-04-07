@@ -52,6 +52,11 @@ class PostsDAO:
                 comments_list.append(comment)
         return comments_list
 
+    def get_count_comments_for_post(self, post_id):
+        self.get_comments_by_post_id(post_id)
+        count_comments = len(self.comments_list)
+        return count_comments
+
     def get_post_by_keyword(self, keyword):
         """Метод обновляет поле с постами, а потом возвращает пост с искомыми словами в тексте поста"""
         post_list = []

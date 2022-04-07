@@ -1,5 +1,5 @@
 import json
-
+from pprint import pprint
 from config import *
 
 
@@ -67,7 +67,7 @@ class PostsDAO:
         return post_list
 
     def get_post_by_pk(self, pk):
-        """Метод обновляет поле с постами, а потом возвращает словарь поста по его ID
+        """Метод обновляет поле с постами, а потом возвращает СЛОВАРЬ поста по его ID
         Добавляет данные: колличество комментов, тексты комментов в виде списка"""
         self.get_all()
         for post in self.posts_list:
@@ -89,3 +89,7 @@ class PostsDAO:
         return posts_list
 
 
+dao = PostsDAO()
+test = dao.get_post_by_pk(2)
+pprint(test)
+print(type(test))

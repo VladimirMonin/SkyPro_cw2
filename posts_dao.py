@@ -67,13 +67,14 @@ class PostsDAO:
         return post_list
 
     def get_post_by_pk(self, pk):
-        """Метод обновляет поле с постами, а потом возвращает пост по его ID в виде списка"""
-        post_list = []
-        self.get_posts()
+        """Метод обновляет поле с постами, а потом возвращает словарь поста по его ID
+        Добавляет данные: колличество комментов, тексты комментов в виде списка"""
+        self.get_all()
         for post in self.posts_list:
             if post['pk'] == pk:
-                post_list.append(post)
-        return post_list
+                post['comments'] = self.get_comments_by_post_id(pk)
+                post['comments_count'] = self.get_count_comments_for_post(pk)
+            return post
 
     def get_main_page(self):
         """Метод берет исходный json с постами и добавляет туда ключ comments_count
@@ -86,4 +87,5 @@ class PostsDAO:
             post['comments_count'] = comments_count
             posts_list.append(post)
         return posts_list
+
 

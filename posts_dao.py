@@ -53,6 +53,7 @@ class PostsDAO:
         return comments_list
 
     def get_count_comments_for_post(self, post_id):
+        """ Метод вытаскивает все комменты к конкретному посту в переменную в виде списка и возвращает его длину """
         all_posts_comments = self.get_comments_by_post_id(post_id)
         return len(all_posts_comments)
 

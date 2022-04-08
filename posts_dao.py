@@ -66,26 +66,13 @@ class PostsDAO:
 
     def get_post_by_pk(self, pk):
         """Метод обновляет поле с постами, а потом возвращает СЛОВАРЬ поста по его ID
-        Добавляет данные: колличество комментов, тексты комментов в виде списка"""
+        Добавляет данные: количество комментов, тексты комментов в виде списка"""
         self.get_all()
         for post in self.posts_list:
             if post['pk'] == pk:
                 post['comments'] = self.get_comments_by_post_id(pk)
                 post['comments_count'] = self.get_count_comments_for_post(pk)
                 return post
-
-    def get_tags_by_post_pk(self, pk):
-        post = self.get_post_by_pk(pk)
-        tags_list = []
-        for word in post["content"].split(' '):
-            strip_word = word.strip(STRIP_SYM_IN_TAG)
-            print(strip_word)
-            if '#' in strip_word:
-                tags_list.append(strip_word)
-        return tags_list
-
-
-        pass
 
     def get_main_page(self):
         """Метод берет исходный json с постами и добавляет туда ключ comments_count
@@ -99,6 +86,5 @@ class PostsDAO:
             posts_list.append(post)
         return posts_list
 
-
-dao = PostsDAO()
-print(dao.get_tags_by_post_pk(1))
+# dao = PostsDAO()
+# print(dao.get_tags_by_post_pk(1))

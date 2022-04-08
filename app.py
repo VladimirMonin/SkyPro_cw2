@@ -11,10 +11,10 @@ def get_main_page():
     return render_template('index.html', posts_list=posts_list)
 
 
-@app.route('/posts/<post_id>')
+@app.route('/posts/<int:post_id>')
 def get_post_by_id(post_id):
     single_post_dict = dao.get_post_by_pk(post_id)  # Словарь с данными по ОДНОМУ посту
-    post_comments_list = single_post_dict['comments']  # Список словарей с комментами (пробовал уже и так вытащить((
+    post_comments_list = single_post_dict['comments']  # Список словарей с комментами (пробовал уже и так вытащить)
     return render_template('post.html', post=single_post_dict, comments=post_comments_list)
 
 
@@ -38,4 +38,13 @@ app.run(debug=True)
 4. Количество просмотров 55
 5. Количество комментариев 52
 6. Текст поста 45 (ПОЧЕМУ ДВАЖДЫ ИДЕТ???)
+"""
+
+"""
+Bookmarks.html - закладки
+Index.html - главная
+Post.html - страница добавления постам
+Search.html - страница результатов поиска
+Tag.html - страница поиска по тэгу
+
 """

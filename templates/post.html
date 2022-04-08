@@ -53,19 +53,18 @@
               <span class="item__counter-text">{{post.views_count}}</span>
             </div>
           </div>
+
           <div class="item__comments">
+            {% for comment in comments %}
             <p class="item__comment">
-              <b>user 1:</b> комментарий пользователя который его оставил
+              <b>{{comment.commenter_name}}:</b> {{comment.comment}}
+              {% endfor %}
             </p>
-            <p class="item__comment">
-              <b>user 2:</b> еще один комментарий
-            </p>
-            <p class="item__comment">
-              <b>user 3:</b> и&nbsp;какой-то коммент еще
-            </p>
+
           </div>
         </div>
       </div>
+
     </section>
   </main>
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">

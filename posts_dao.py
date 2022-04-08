@@ -22,12 +22,10 @@ class PostsDAO:
     def get_posts(self):
         """Метод загружает данные по постам в поле объекта и возвращает список словарей с постами """
         self.load_posts()
-        return self.posts_list
 
     def get_comments(self):
         """ Метод загружает данные по комментам в поле объекта и возвращает список словарей с комментами"""
         self.load_comments()
-        return self.comments_list
 
     def get_all(self):
         """Метод обновляет поля объекта данными с Json посты и комменты"""
@@ -90,5 +88,6 @@ class PostsDAO:
 
 
 dao = PostsDAO()
-test = dao.get_post_by_pk(1)
-print(test)
+post_id = 1
+single_post_dict = dao.get_post_by_pk(post_id)
+print(single_post_dict)

@@ -74,6 +74,19 @@ class PostsDAO:
                 post['comments_count'] = self.get_count_comments_for_post(pk)
                 return post
 
+    def get_tags_by_post_pk(self, pk):
+        post = self.get_post_by_pk(pk)
+        tags_list = []
+        for word in post["content"].split(' '):
+            strip_word = word.strip(STRIP_SYM_IN_TAG)
+            print(strip_word)
+            if '#' in strip_word:
+                tags_list.append(strip_word)
+        return tags_list
+
+
+        pass
+
     def get_main_page(self):
         """Метод берет исходный json с постами и добавляет туда ключ comments_count
          с количеством комментов для каждого поста для вывода вьюшки главной страницы """
@@ -88,6 +101,4 @@ class PostsDAO:
 
 
 dao = PostsDAO()
-post_id = 1
-single_post_dict = dao.get_post_by_pk(post_id)
-print(single_post_dict)
+print(dao.get_tags_by_post_pk(1))

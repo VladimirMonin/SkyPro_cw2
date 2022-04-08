@@ -61,6 +61,7 @@ class PostsDAO:
         self.get_posts()
         for post in self.posts_list:
             if keyword.lower() in post['content'].lower():
+                post = self.get_post_by_pk(post['pk'])
                 post_list.append(post)
         return post_list
 

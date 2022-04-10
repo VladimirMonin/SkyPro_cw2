@@ -55,7 +55,7 @@
           </div>
 
           <div class="item__comments">
-            {% for comment in comments %}
+            {% for comment in post.comments %}
             <p class="item__comment">
               <b>{{comment.commenter_name}}:</b> {{comment.comment}}
               {% endfor %}

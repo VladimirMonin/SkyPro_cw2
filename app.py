@@ -18,8 +18,7 @@ def get_main_page():
 @app.route('/posts/<int:post_id>')
 def get_post_by_id(post_id):
     single_post_dict = dao.get_post_by_pk(post_id)  # Словарь с данными по ОДНОМУ посту
-    post_comments_list = single_post_dict['comments']  # Список словарей с комментами (пробовал уже и так вытащить)
-    return render_template('post.html', post=single_post_dict, comments=post_comments_list)
+    return render_template('post.html', post=single_post_dict)
 
 @app.route('/search/')
 def get_search():

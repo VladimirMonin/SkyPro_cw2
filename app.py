@@ -18,7 +18,7 @@ def get_main_page():
 
 
 #  ВЬЮШКА СТРАНИЦЫ 1 ПОСТА (по ID)
-@app.route('/posts/<int:post_id>')
+@app.route('/posts/<int:post_id>/')
 def get_post_by_id(post_id):
     single_post_dict = dao.get_post_by_pk(post_id)  # Словарь с данными по ОДНОМУ посту
     return render_template('post.html', post=single_post_dict)
@@ -36,11 +36,12 @@ def get_search():
 
     return render_template('search.html', post_list=post_list, scount=search_count)
 
+
 #  ВЬЮШКА СТРАНИЦЫ АВТОРА
-@app.route('/users/<username>')
+@app.route('/users/<string:username>/')
 def get_posts_by_username(username):
     user_posts = get_posts_by_username(username)
+    return render_template('user-feed.html', posts=user_posts)
 
-    return render_template ('user-feed.html', posts = user_posts)
 
 app.run(debug=True)

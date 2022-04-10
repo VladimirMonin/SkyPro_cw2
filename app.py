@@ -25,7 +25,7 @@ def get_post_by_id(post_id):
 
 
 #  ВЬЮШКА СТРАНИЦЫ ПОИСКА
-@app.route('/search/')  # http://127.0.0.1:5000/search/?s=%D0%B5%D0%B4%D0%B0
+@app.route('/search/')  # http://127.0.0.1:5000/search/?s=еда
 def get_search():
     search_str = request.args.get('s')
     logging.info(f'Поисковая фраза: {search_str}')
@@ -41,7 +41,7 @@ def get_search():
 @app.route('/users/<string:username>/')
 def get_posts_by_username(username):
     user_posts = get_posts_by_username(username)
-    return render_template('user-feed.html', posts=user_posts)
+    return render_template('user-feed.html', post_list=user_posts)
 
 
 app.run(debug=True)

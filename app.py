@@ -36,5 +36,11 @@ def get_search():
 
     return render_template('search.html', post_list=post_list, scount=search_count)
 
+#  ВЬЮШКА СТРАНИЦЫ АВТОРА
+@app.route('/users/<username>')
+def get_posts_by_username(username):
+    user_posts = get_posts_by_username(username)
+
+    return render_template ('user-feed.html', posts = user_posts)
 
 app.run(debug=True)

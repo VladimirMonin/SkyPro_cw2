@@ -38,6 +38,7 @@ class PostsDAO:
         self.get_posts()
         for post in self.posts_list:
             if post['poster_name'] == user_name:
+                post = self.get_post_by_pk(post['pk'])
                 user_posts_list.append(post)
         return user_posts_list
 

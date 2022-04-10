@@ -41,7 +41,7 @@ def get_search():
 @app.route('/users/<string:username>/')
 def get_posts_by_username(username):
     user_posts = get_posts_by_username(username)
-    return render_template('user-feed.html', post_list=user_posts)
+    return render_template('user-feed.html', posts=user_posts)
 
 
 app.run(debug=True)

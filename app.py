@@ -39,8 +39,8 @@ def get_search():
 
 #  ВЬЮШКА СТРАНИЦЫ АВТОРА
 @app.route('/users/<string:username>/')
-def get_posts_by_username(username):
-    user_posts = get_posts_by_username(username)
+def get_posts_by_user(username):
+    user_posts = dao.get_posts_by_user(username)
     return render_template('user-feed.html', posts=user_posts)
 
 

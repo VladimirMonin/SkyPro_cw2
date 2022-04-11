@@ -47,7 +47,8 @@ def get_posts_by_user(username):
 #  ВЬЮШКА API endpoint - полный список постов в json
 @app.route('/api/posts/')
 def get_posts_json_api():
-    pass
+    posts_list = dao.get_posts_for_json()
+    return jsonify(posts_list)
 
-
+app.config['JSON_AS_ASCII'] = False
 app.run(debug=True)

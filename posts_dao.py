@@ -77,6 +77,15 @@ class PostsDAO:
                 post['comments_count'] = self.get_count_comments_for_post(pk)
                 return post
 
+    def get_posts_for_json(self):
+        """Метод обновляет поле с постами. Потом проходит по нему, и формирует новый список
+        в который добавляет полную инфу о каждом посте, включая данные с json с комментарии"""
+        self.get_posts()
+        posts_list = []
+        for post in self.posts_list:
+            posts_list.append(self.get_post_by_pk(post['pk']))
+        return posts_list
+
     def get_main_page(self):
         """Метод берет исходный json с постами и добавляет туда ключ comments_count
          с количеством комментов для каждого поста для вывода вьюшки главной страницы """
@@ -89,5 +98,5 @@ class PostsDAO:
             posts_list.append(post)
         return posts_list
 
-dao = PostsDAO()
-pprint(dao.get_posts_by_user('leo'))
+# dao = PostsDAO()
+# pprint(dao.get_posts_by_user('leo'))

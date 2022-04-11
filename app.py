@@ -50,5 +50,12 @@ def get_posts_json_api():
     posts_list = dao.get_posts_for_json()
     return jsonify(posts_list)
 
+# ВЬЮШКА API endpoint - возвращает json для одного поста
+@app.route('/api/posts/<int:post_id>')
+def get_post_json_api(post_id):
+    post = dao.get_post_by_pk(post_id)
+    return jsonify(post)
+
+
 app.config['JSON_AS_ASCII'] = False
 app.run(debug=True)

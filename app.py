@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from posts_dao import PostsDAO
 # Импортируем логирование
 import logging
@@ -42,6 +42,12 @@ def get_search():
 def get_posts_by_user(username):
     user_posts = dao.get_posts_by_user(username)
     return render_template('user-feed.html', posts=user_posts)
+
+
+#  ВЬЮШКА API endpoint - полный список постов в json
+@app.route('/api/posts/')
+def get_posts_json_api():
+    pass
 
 
 app.run(debug=True)

@@ -38,8 +38,8 @@ class PostsDAO:
         self.get_posts()
         for post in self.posts_list:
             if post['poster_name'] == user_name:
-                # post_pk = post['pk']
-                # post = self.get_post_by_pk(post_pk)
+                post_pk = post['pk']
+                post = self.get_post_by_pk(post_pk)
                 user_posts_list.append(post)
         return user_posts_list
 
@@ -89,5 +89,5 @@ class PostsDAO:
             posts_list.append(post)
         return posts_list
 
-# dao = PostsDAO()
-# pprint(dao.get_posts_by_user('leo'))
+dao = PostsDAO()
+pprint(dao.get_posts_by_user('leo'))

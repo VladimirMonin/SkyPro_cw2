@@ -97,6 +97,3 @@ class PostsDAO:
             post['comments_count'] = comments_count
             posts_list.append(post)
         return posts_list
-
-# dao = PostsDAO()
-# pprint(dao.get_posts_by_user('leo'))

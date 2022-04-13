@@ -8,6 +8,7 @@ class PostsDAO:
     def __init__(self):
         self.posts_list = None
         self.comments_list = None
+        self.tags_list = None
 
     def load_posts(self):
         """Метод загружает файл с постами и сохраняет их в поле объекта"""
@@ -97,3 +98,15 @@ class PostsDAO:
             post['comments_count'] = comments_count
             posts_list.append(post)
         return posts_list
+
+    def get_all_tags(self):
+        """Метод обходит все посты и возвращает список тэгов в поле self.tags_list DAO """
+        self.get_posts()
+        for post in self.posts_list:
+            content = post['content'].lower()
+            if '#' in content:
+                content_list = content.split(' ')
+                for word in content_list:
+                    pass
+
+        pass

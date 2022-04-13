@@ -106,7 +106,13 @@ class PostsDAO:
             content = post['content'].lower()
             if '#' in content:
                 content_list = content.split(' ')
+                tags_list = []
                 for word in content_list:
+                    """
+                    Сплитануть лишнее
+                    Если слово содержит тэг добавить в список tags_list
+                    Записать результат в поле self.tags_list
+                    """
                     pass
 
         pass

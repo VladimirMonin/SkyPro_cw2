@@ -58,4 +58,6 @@ def get_post_json_api(post_id):
 
 
 app.config['JSON_AS_ASCII'] = False
-app.run(debug=True)
+
+if __name__ == '__main__':
+    app.run()

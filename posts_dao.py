@@ -66,7 +66,7 @@ class PostsDAO:
             if keyword.lower() in post['content'].lower():
                 post = self.get_post_by_pk(post['pk'])
                 post_list.append(post)
-        return post_list
+        return post_list[:10]
 
     def get_post_by_pk(self, pk):
         """Метод обновляет поле с постами, а потом возвращает СЛОВАРЬ поста по его ID
@@ -114,5 +114,3 @@ class PostsDAO:
                     Записать результат в поле self.tags_list
                     """
                     pass
-
-        pass

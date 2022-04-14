@@ -1,11 +1,11 @@
 import pytest
 from posts_dao import PostsDAO
+import app
 
 dao = PostsDAO()
 
 
 class TestPostDAO:
-
     def test_create_postsDAO_object(self):
         """Проверяем создание объекта DAO"""
         assert isinstance(dao, PostsDAO) == True
@@ -61,7 +61,7 @@ class TestPostDAO:
         assert post['comments']
         assert post['comments_count']
 
-#  ЭТИ API используют get_post_by_pk как основу. Функция основательно протестирована выше.
+    #  ЭТИ API используют get_post_by_pk как основу. Функция основательно протестирована выше.
     def test_get_posts_for_json(self):
         """Проверяем что возвращается НЕ пустой список"""
         list_for_jsonify = dao.get_posts_for_json()
@@ -75,3 +75,41 @@ class TestPostDAO:
 
         assert isinstance(list_main_page, list) == True
         assert len(list_main_page) > 0, 'Ожидается 1 и более'
+
+
+class TestAPI:
+
+    def test_get_response_all_posts(self):
+        response = app.app.test_client().get('/api/posts/')
+        assert response.status_code == 200
+
+    def test_get_all_posts_is_list(self):
+        response = app.app.test_client().get('/api/posts/')
+        assert type(response.json) == list, 'Не list'
+
+    def test_get_all_posts_is_keys(self):
+        allowed_keys = {"poster_name", "poster_avatar", "pic", "content", "views_count", "likes_count",
+                        "pk", 'comments', 'comments_count'}
+
+        response = app.app.test_client().get('/api/posts/')
+        posts_list = response.json
+        assert len(posts_list) > 0, "Пустой JSON"
+        for post in posts_list[:3]:
+            post_keys = set(post.keys())
+            assert post_keys == allowed_keys, f"Ключи {post_keys} не соответствуют ожидаемым"
+
+    def test_get_response_one_post(self):
+        response = app.app.test_client().get('/api/posts/1')
+        assert response.status_code == 200
+
+    def test_get_one_post_is_dict(self):
+        response = app.app.test_client().get('/api/posts/1')
+        assert type(response.json) is dict, f'{response} не является словарём'
+
+    def test_get_one_posts_is_keys(self):
+        allowed_keys = {"poster_name", "poster_avatar", "pic", "content", "views_count", "likes_count",
+                        "pk", 'comments', 'comments_count'}
+
+        response = app.app.test_client().get('/api/posts/1')
+        post_keys = response.json.keys()
+        assert post_keys == allowed_keys, f"Ключи {post_keys} не соответствуют ожидаемым"

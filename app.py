@@ -10,23 +10,23 @@ dao = PostsDAO()
 app = Flask(__name__)
 
 
-#  ВЬЮШКА ГЛАВНОЙ СТРАНИЦЫ
 @app.route('/')
 def get_main_page():
+    """ ВЬЮШКА ГЛАВНОЙ СТРАНИЦЫ """
     posts_list = dao.get_main_page()
     return render_template('index.html', posts_list=posts_list)
 
 
-#  ВЬЮШКА СТРАНИЦЫ 1 ПОСТА (по ID)
 @app.route('/posts/<int:post_id>/')
 def get_post_by_id(post_id):
+    """ ВЬЮШКА СТРАНИЦЫ 1 ПОСТА (по ID) """
     single_post_dict = dao.get_post_by_pk(post_id)  # Словарь с данными по ОДНОМУ посту
     return render_template('post.html', post=single_post_dict)
 
 
-#  ВЬЮШКА СТРАНИЦЫ ПОИСКА
 @app.route('/search/')  # http://127.0.0.1:5000/search/?s=еда
 def get_search():
+    """ ВЬЮШКА СТРАНИЦЫ ПОИСКА """
     search_str = request.args.get('s')
     logging.info(f'Поисковая фраза: {search_str}')
 
@@ -37,22 +37,23 @@ def get_search():
     return render_template('search.html', post_list=post_list, scount=search_count)
 
 
-#  ВЬЮШКА СТРАНИЦЫ АВТОРА
 @app.route('/users/<string:username>/')
 def get_posts_by_user(username):
+    """ ВЬЮШКА СТРАНИЦЫ АВТОРА """
     user_posts = dao.get_posts_by_user(username)
     return render_template('user-feed.html', posts=user_posts)
 
 
-#  ВЬЮШКА API endpoint - полный список постов в json
 @app.route('/api/posts/')
 def get_posts_json_api():
+    """ ВЬЮШКА API endpoint - полный список постов в json """
     posts_list = dao.get_posts_for_json()
     return jsonify(posts_list)
 
-# ВЬЮШКА API endpoint - возвращает json для одного поста
+
 @app.route('/api/posts/<int:post_id>')
 def get_post_json_api(post_id):
+    """ ВЬЮШКА API endpoint - возвращает json для одного поста """
     post = dao.get_post_by_pk(post_id)
     return jsonify(post)
 
